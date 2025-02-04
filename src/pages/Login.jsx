@@ -1,19 +1,24 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { login } from '../store/authSlice'
-import '../styles/Login.css'
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
+import "../styles/Login.css";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ username: '', password: '' })
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const [message, setMessage] = useState("");
+  const [userData, setUserData] = useState({ username: "", password: "" });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(login({ username: credentials.username }))
-    navigate('/dashboard')
-  }
+    e.preventDefault();
+    if (userData.password.length < 5 && userData.username.length < 5) {
+      setMessage("please fill username and password upto atleast 5 letters.");
+      return;
+    }
+    dispatch(login({ username: userData.username }));
+    navigate("/dashboard");
+  };
 
   return (
     <div className="login-container">
@@ -22,19 +27,25 @@ const Login = () => {
         <input
           type="text"
           placeholder="Username"
-          value={credentials.username}
-          onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+          value={userData.username}
+          onChange={(e) =>
+            setUserData({ ...userData, username: e.target.value })
+          }
         />
         <input
+          onFocus={() => setMessage("")}
           type="password"
           placeholder="Password"
-          value={credentials.password}
-          onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+          value={userData.password}
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
         />
+        {message && <span className="error">{message}</span>}
         <button type="submit">Login</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

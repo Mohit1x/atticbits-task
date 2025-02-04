@@ -72,9 +72,9 @@ const DummyList = () => {
         ) : (
           <div className="items-list">
             {items.map((item) => (
-              <div className="items-container">
+              <div key={item.id} className="items-container">
                 <h2>{item.id} .</h2>
-                <div key={item.id} className="item-card">
+                <div className="item-card">
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                 </div>

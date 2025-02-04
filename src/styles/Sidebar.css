@@ -17,25 +17,11 @@
     top: 10px;
     left: 10px;
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: gainsboro;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  @media (max-width: 768px) {
-    .sidebar {
-      transform: translateX(-100%); 
-    }
-  
-    .sidebar.open {
-      transform: translateX(0); 
-    }
-  
-    .toggle-btn {
-      display: block; 
-    }
   }
    
   .logo {
@@ -75,4 +61,18 @@
   
   .logout-btn {
     color: var(--blue-highlight);
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%); 
+    }
+  
+    .sidebar.open {
+      transform: translateX(0); 
+    }
+  
+    .toggle-btn {
+      display: block; 
+    }
   }
